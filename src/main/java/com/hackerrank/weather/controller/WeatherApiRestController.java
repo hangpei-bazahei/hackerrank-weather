@@ -14,15 +14,13 @@ public class WeatherApiRestController {
     @Autowired
     WeatherService weatherService;
 
-    @Autowired
-    WeatherRepository weatherRepository;
 
     @ResponseBody
     @RequestMapping(value = "/weather", method = {RequestMethod.POST})
     public String postWeather(@RequestBody List<Weather> weather){
 
         System.out.println("Posting Weather");
-        weatherRepository.save(weather);
+        weatherService.uploadWeatherData(weather);
         return "success";
     }
 

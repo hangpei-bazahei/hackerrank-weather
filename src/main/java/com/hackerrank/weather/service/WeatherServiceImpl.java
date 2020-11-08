@@ -5,6 +5,8 @@ import com.hackerrank.weather.repository.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WeatherServiceImpl implements WeatherService {
 
@@ -12,7 +14,7 @@ public class WeatherServiceImpl implements WeatherService {
     private WeatherRepository weatherRepository;
 
     @Override
-    public void uploadWeatherData(Weather weather) {
+    public void uploadWeatherData(List<Weather> weather) {
         weatherRepository.save(weather);
     }
 }
