@@ -1,17 +1,28 @@
 package com.hackerrank.weather.model;
 
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Weather {
+@Entity
+public class Weather implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date dateRecorded;
+
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "location_id")
     private Location location;
-    private Float[] temperature;
+
+    private String temperature;
 
     public Weather() {
     }
 
-    public Weather(Long id, Date dateRecorded, Location location, Float[] temperature) {
+    public Weather(Long id, Date dateRecorded, Location location, String temperature) {
         this.id = id;
         this.dateRecorded = dateRecorded;
         this.location = location;
@@ -42,11 +53,11 @@ public class Weather {
         this.location = location;
     }
 
-    public Float[] getTemperature() {
+    public String getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Float[] temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 }
