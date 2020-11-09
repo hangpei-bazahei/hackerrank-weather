@@ -11,10 +11,10 @@ public class Weather implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date dateRecorded;
+    private Date date;
 
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "location_id")
+    @JoinColumn(name = "LOCATION_CITY")
     private Location location;
 
     private String temperature;
@@ -24,7 +24,7 @@ public class Weather implements Serializable {
 
     public Weather(Long id, Date dateRecorded, Location location, String temperature) {
         this.id = id;
-        this.dateRecorded = dateRecorded;
+        this.date = dateRecorded;
         this.location = location;
         this.temperature = temperature;
     }
@@ -37,12 +37,12 @@ public class Weather implements Serializable {
         this.id = id;
     }
 
-    public Date getDateRecorded() {
-        return dateRecorded;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDateRecorded(Date dateRecorded) {
-        this.dateRecorded = dateRecorded;
+    public void setDate(Date dateRecorded) {
+        this.date = dateRecorded;
     }
 
     public Location getLocation() {

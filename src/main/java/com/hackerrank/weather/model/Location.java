@@ -1,50 +1,76 @@
 package com.hackerrank.weather.model;
 
-public class Location {
-    private String cityName;
-    private String stateName;
-    private Float latitude;
-    private Float longitude;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+@Entity
+public class Location implements Serializable {
+
+    @Id
+    private String city;
+    private String state;
+    @Column(precision = 4)
+    private Float lat;
+    @Column(precision = 4)
+    private Float lon;
+//    @Id
+//    @GeneratedValue
+//    private Long id;
+
+    @OneToMany(cascade = {CascadeType.PERSIST})
+    private List<Weather> weatherList;
+
 
     public Location() {
     }
 
-    public Location(String cityName, String stateName, Float latitude, Float longitude) {
-        this.cityName = cityName;
-        this.stateName = stateName;
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public Location(Long id, String city, String state, Float lat, Float lon) {
+
+        //this.id = id;
+        this.city = city;
+        this.state = state;
+        this.lat = lat;
+        this.lon = lon;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getCity() {
+        return city;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getStateName() {
-        return stateName;
+    public String getState() {
+        return state;
     }
 
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public Float getLatitude() {
-        return latitude;
+    public Float getLat() {
+        return lat;
     }
 
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
+    public void setLat(Float lat) {
+        this.lat = lat;
     }
 
-    public Float getLongitude() {
-        return longitude;
+    public Float getLon() {
+        return lon;
     }
 
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
+    public void setLon(Float lon) {
+        this.lon = lon;
     }
+
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 }
